@@ -30,6 +30,6 @@ const nome=document.getElementById('nome').value.trim();
 const fone=document.getElementById('fone').value.trim();
 const serv=document.getElementById('serv').value;
 const msg=document.getElementById('msg').value.trim();
-const texto=`Olá, Prime Care! Sou ${nome} (${fone}).%0AInteresse: ${serv}.%0A${msg?('Situação: '+msg):''}`;
+const texto=`Olá, Singular Care! Sou ${nome} (${fone}).%0AInteresse: ${serv}.%0A${msg?('Situação: '+msg):''}`;
 window.open(`https://wa.me/5541991529920?text=${encodeURIComponent(texto).replace(/%2520/g,'%20')}`,'_blank');
 }

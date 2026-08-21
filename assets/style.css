@@ -1,17 +1,17 @@
 :root{
---navy:#0D2B45;
---navy-soft:#1F445E;
---rose:#C0496F;
---rose-deep:#A93A5E;
---rose-soft:#D0789E;
---blush:#FFF1F6;
---blush-2:#FCE7EE;
---cream:#FFFCFD;
+--navy:#00203B;
+--navy-soft:#4C6376;
+--rose:#E35345;
+--rose-deep:#BA4439;
+--rose-soft:#EA7E74;
+--blush:#FDF5F4;
+--blush-2:#FCEEEC;
+--cream:#FFFDFD;
 --ink:#21303D;
 --muted:#5C6A75;
---line:#F0DCE4;
---shadow:0 18px 50px -24px rgba(13,43,69,.30);
---shadow-sm:0 8px 24px -16px rgba(13,43,69,.35);
+--line:#FBE3E1;
+--shadow:0 18px 50px -24px rgba(0,32,59,.30);
+--shadow-sm:0 8px 24px -16px rgba(0,32,59,.35);
 --radius:22px;
 --maxw:1140px;
 }
@@ -57,10 +57,10 @@ background:rgba(255,252,253,.86);backdrop-filter:blur(12px);
 border-bottom:1px solid var(--line);
 }
 .nav{position:relative;display:flex;align-items:center;justify-content:space-between;padding:14px 24px;max-width:var(--maxw);margin:0 auto}
-.brand{display:flex;align-items:center;gap:12px;font-family:'Fraunces';font-weight:600;font-size:1.32rem;color:var(--navy)}
+.brand{display:flex;align-items:center;gap:10px;font-family:'Fraunces';font-weight:600;font-size:1.2rem;color:var(--navy)}
 .brand img{width:46px;height:46px;border-radius:50%;object-fit:cover;box-shadow:var(--shadow-sm)}
 .brand span b{color:var(--rose)}
-.navlinks{display:flex;gap:30px;align-items:center;font-weight:600;font-size:.97rem}
+.navlinks{display:flex;gap:22px;align-items:center;font-weight:600;font-size:.93rem}
 .navlinks a{color:var(--navy-soft);transition:color .2s}
 .navlinks a:hover{color:var(--rose)}
 .btn{
@@ -315,7 +315,7 @@ border-top:3px solid var(--rose-soft);
 .chip{background:var(--blush);border:1px solid var(--line);color:var(--rose-deep);font-size:.8rem;font-weight:600;padding:4px 12px;border-radius:20px}
 
 /* ---------- Nossa equipe ---------- */
-.team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
 .team-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:26px 20px;text-align:center;box-shadow:var(--shadow-sm)}
 .team-card .av-lg{
 width:76px;height:76px;border-radius:50%;margin:0 auto 16px;
