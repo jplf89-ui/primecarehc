@@ -1,35 +1,51 @@
-document.getElementById('ano').textContent = new Date().getFullYear();
+(function () {
+  var d = document;
+  d.documentElement.classList.add('js');
 
-// Mobile menu
-const navlinks = document.getElementById('navlinks');
-const menuToggle = document.getElementById('menuToggle');
-function toggleMenu(force){
-const open = typeof force === 'boolean' ? force : !navlinks.classList.contains('open');
-navlinks.classList.toggle('open', open);
-menuToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-menuToggle.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
-}
-navlinks.querySelectorAll('a').forEach(a=>a.addEventListener('click', ()=>toggleMenu(false)));
-document.addEventListener('click', (e)=>{
-if(navlinks.classList.contains('open') && !navlinks.contains(e.target) && !menuToggle.contains(e.target)){
-toggleMenu(false);
-}
-});
-window.addEventListener('resize', ()=>{ if(window.innerWidth > 640) toggleMenu(false); });
+  var WA = '5541985008924';
 
-// Scroll reveal
-const io = new IntersectionObserver((entries)=>{
-entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
-},{threshold:.12});
-document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  // mobile menu
+  var btn = d.getElementById('menuToggle');
+  var nav = d.getElementById('navlinks');
+  if (btn && nav) {
+    var set = function (open) {
+      nav.classList.toggle('open', open);
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      btn.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
+    };
+    btn.addEventListener('click', function () { set(!nav.classList.contains('open')); });
+    nav.addEventListener('click', function (e) { if (e.target.tagName === 'A') set(false); });
+    d.addEventListener('keydown', function (e) { if (e.key === 'Escape') set(false); });
+    window.addEventListener('resize', function () { if (window.innerWidth > 860) set(false); });
+  }
 
-// Contact form -> WhatsApp (número temporário: 41 99152-9920)
-function enviarWhats(ev){
-ev.preventDefault();
-const nome=document.getElementById('nome').value.trim();
-const fone=document.getElementById('fone').value.trim();
-const serv=document.getElementById('serv').value;
-const msg=document.getElementById('msg').value.trim();
-const texto=`Olá, Singular Care! Sou ${nome} (${fone}).%0AInteresse: ${serv}.%0A${msg?('Situação: '+msg):''}`;
-window.open(`https://wa.me/5541991529920?text=${encodeURIComponent(texto).replace(/%2520/g,'%20')}`,'_blank');
-}
+  // year
+  var y = d.getElementById('ano');
+  if (y) y.textContent = new Date().getFullYear();
+
+  // reveal on scroll (content stays visible without JS / observer)
+  var els = d.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    els.forEach(function (el) { io.observe(el); });
+  } else {
+    els.forEach(function (el) { el.classList.add('in'); });
+  }
+
+  // contact form -> WhatsApp
+  var form = d.getElementById('contactForm');
+  if (form) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var f = form.elements;
+      var msg = 'Olá, Singular Care! Sou ' + f.nome.value.trim() + ' (' + f.fone.value.trim() + ').\n' +
+        'Preciso de: ' + f.serv.value + '.' +
+        (f.msg.value.trim() ? '\n' + f.msg.value.trim() : '');
+      window.open('https://wa.me/' + WA + '?text=' + encodeURIComponent(msg), '_blank', 'noopener');
+    });
+  }
+})();
