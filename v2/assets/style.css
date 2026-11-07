@@ -66,7 +66,7 @@ p{text-wrap:pretty}
 /* ------- header ------- */
 header.top{position:sticky;top:0;z-index:50;background:var(--navy-deep);border-bottom:1px solid var(--navy-line)}
 .nav{display:flex;align-items:center;gap:32px;height:78px}
-.brand{display:flex;align-items:center;flex:none}
+.brand{display:flex;align-items:center;flex:none;min-height:48px}
 .brand img{height:50px;width:auto}
 .navlinks{display:flex;gap:30px;margin-left:auto;font-family:var(--display);font-weight:600;font-size:1rem}
 .navlinks a{color:var(--on-navy-2);text-decoration:none;padding:6px 0;border-bottom:2px solid transparent;transition:color .2s,border-color .2s}
@@ -114,6 +114,22 @@ header.top{position:sticky;top:0;z-index:50;background:var(--navy-deep);border-b
 .hero .rise:nth-child(4){animation-delay:.24s}
 .hero-grid>.finder{animation:rise 1s .2s var(--ease) both}
 @keyframes rise{from{opacity:0;transform:translateY(18px)}}
+
+/* ------- hero life: one authored moment, kept quiet ------- */
+.hero .motif path,.page-hero .motif path{stroke-dasharray:1;stroke-dashoffset:1;animation:draw 2.6s .35s var(--ease) forwards}
+.hero .motif path+path,.page-hero .motif path+path{animation-delay:1.05s;animation-duration:2.8s}
+.hero .motif,.page-hero .motif{animation:float 11s 3.5s ease-in-out infinite alternate}
+.hero::before{inset:-12%;animation:drift 18s ease-in-out infinite alternate}
+.sits li{animation:rise .8s var(--ease) both}
+.sits li:nth-child(1){animation-delay:.55s}.sits li:nth-child(2){animation-delay:.65s}.sits li:nth-child(3){animation-delay:.75s}.sits li:nth-child(4){animation-delay:.85s}
+.creds span{animation:rise .8s var(--ease) both}
+.creds span:nth-child(1){animation-delay:.5s}.creds span:nth-child(2){animation-delay:.6s}.creds span:nth-child(3){animation-delay:.7s}
+.btn-primary .wa-ping,.hero-cta .btn-primary svg{transform-origin:50% 60%}
+.hero-cta .btn-primary:hover svg{animation:wiggle .6s var(--ease)}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes float{from{transform:translate3d(0,0,0)}to{transform:translate3d(14px,-16px,0)}}
+@keyframes drift{from{transform:translate3d(-2%,0,0)}to{transform:translate3d(3%,-2%,0)}}
+@keyframes wiggle{0%,100%{transform:rotate(0)}30%{transform:rotate(-14deg)}60%{transform:rotate(10deg)}}
 
 /* ------- steps ------- */
 .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;list-style:none;counter-reset:s}
@@ -326,6 +342,7 @@ footer.foot{background:var(--navy-deep);color:var(--on-navy-2);padding:72px 0 32
   .page-hero-in{padding:40px 0 64px}
 }
 @media (prefers-reduced-motion:reduce){
+  .hero .motif path,.page-hero .motif path{stroke-dasharray:none;stroke-dashoffset:0}
   *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
   .js .reveal{opacity:1;transform:none}
 }
